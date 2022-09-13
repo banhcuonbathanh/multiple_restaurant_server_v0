@@ -86,6 +86,10 @@ productName: {
     type: String,
     require: true
 },
+createAt:{
+    type: Date,
+    default: ()=> Date.now(),
+}
 });
 
 // let category = mongoose.model("category", categorySchema);

@@ -153,28 +153,32 @@ const addUser = (userId, socketId) => {
  
     // ----------------------------------------
 
+
+
 io.on('connection', async (client) => { 
-    // console.log('test')
-       // ----------------------------------------
-    //     add user in 
-    client.on('sign_in', async (userId) =>{
+//------------------------------
+   // add user to online list
+    client.on('add_user', async (userId) =>{
 
         addUser(userId, client.id);
-       
-        // clientOnline[userId] = client.id;
-        // console.log('fromclientsdfasdfsdf');
-        // console.log(clientOnline.hasOwnProperty(userId))
-        // console.log(clientOnline);
-        client.emit('fromserver','emit from server' );
+     
     } );
    // ----------------------------------------
+// send order to restaurantOner
+client.on('send_order', async (data) =>{
+    console.log('send_order')
+    // console.log(data['restaurantownerId'])
+    // console.log(data['orderId'])
+// console.log(clientOnline[ restaurantOnwnerId])
+ 
+ 
+    io.to(clientOnline[data['restaurantownerId'] ]) .emit('receiveOrder', {'orderId':data['orderId'] });
+} );
+
 //  send to specit user
 
 client.on('sendMessage', async (data) => {
-//  console.log('test emit form mobil');
-// console.log(clientOnline[ data['receiveId']]);
-// console.log(clientOnline);
-// searchOrder =  await orderModel.find({BuyingUserId: '62b2d37d9176c5d25ac393ab'});
+
     io.to(clientOnline[ data['receiveId']]) .emit('getmessage', {'order': 'searchOrder' });
 });
 

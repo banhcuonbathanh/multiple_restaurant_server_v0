@@ -1,3 +1,6 @@
+
+
+
 const mongoose = require("mongoose");
 
 const orderTestSchema = new mongoose.Schema({
@@ -67,7 +70,17 @@ address: {
 
     toppingsList:
     [],
-
+    // createAt:{
+    //     type: Date,
+    //     default: ()=>  Date().toLocaleString( { timeZone: "Asia/Jakarta" })
+        
+    // }
+    createAt:{
+        type: Date,
+      
+        default: ()=>   Date(DateTime.now().year,DateTime.now().month,DateTime.now().day, DateTime.now().hour + 7, DateTime.now().minute  )
+        
+    }
 });
 
 // let category = mongoose.model("category", categorySchema);

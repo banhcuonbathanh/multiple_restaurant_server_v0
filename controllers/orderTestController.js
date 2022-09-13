@@ -1,4 +1,5 @@
 
+const { DateTime } = require("luxon");
 const orderTestModel  = require("../model/ordertestmodel");
 // const productModel = require("../model/productmodel");
 // const restaurantModel = require("../model/restaurantmodel");
@@ -24,6 +25,7 @@ const orderTestController = {
                 restaurantOnwnerId: req.body.restaurantOnwnerId,
                 productdetailsList: req.body.productdetailsList,
                 toppingsList: req.body.toppingsList,
+                createAt: DateTime.now(),
                 // category:req.body.category,
             });
         const newOrderTestModelSaved = await newOrderTestModel.save();
@@ -102,6 +104,38 @@ try {
     const allProductDetail = await productDetail.find();
    
     res.status(200).json(allProductDetail);
+} catch (error) {
+    console.log('allProductDetail error trong allProductDetail controller');
+    res.status(500).json(error.message);
+}
+},
+// ---------------------------------------------------------------------------
+
+searchingorderByRangeOfDate : async (req, res)=>{
+
+    // console.log('searchingorderByRangeOfDate productDetailController')
+    // console.log(req.body.fromDate)
+    // console.log(req.body.toDate )
+try {
+    // createAt: {$gte:  req.body.fromDate, $lte:  req.body.toDate}, restaurantOnwnerId: req.body.restaurantOnwnerId
+    // const foundOrdertest = await orderTestModel.find(
+    //     {
+    //         createAt: {$gte:  req.body.fromDate, $lte:  req.body.toDate },
+    //     });
+        const foundOrdertest = await orderTestModel.find(
+            { $and:[
+                {
+                createAt: {$gte:  req.body.fromDate, $lte:  req.body.toDate}
+            }, 
+            // {
+            //     createAt: { $lte:  req.body.toDate},
+            // }, 
+            {restaurantOnwnerId: req.body.restaurantOnwnerId},
+        ]
+
+            });
+     
+    res.status(200).json(foundOrdertest);
 } catch (error) {
     console.log('allProductDetail error trong allProductDetail controller');
     res.status(500).json(error.message);

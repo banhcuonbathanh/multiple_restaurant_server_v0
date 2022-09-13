@@ -74,6 +74,10 @@ productdetailIdList:
         type: Number,
      
     }],
+    createAt:{
+        type: Date,
+        default: ()=> Date.now(),
+    }
 // topping:
 //    [
 //        {

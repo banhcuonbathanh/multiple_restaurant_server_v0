@@ -22,6 +22,10 @@ booking: {
     type: Boolean,
     require: true
 },
+createAt:{
+    type: Date,
+    default: ()=> Date.now(),
+}
 });
 
 // let category = mongoose.model("category", categorySchema);
