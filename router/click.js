@@ -1,9 +1,10 @@
 const router = require("express").Router();
-const testController = require("../controllers/testController");
+const clickController = require("../controllers/click_controller");
 
 
-router.post("/createtest",testController.addtest);
-
+router.post("/createClick", clickController.createClick);
+router.post("/addTimeClick", clickController.addTimeClick);
+router.post("/checkAvailableClick", clickController.checkAvailableClick);
 // router.get("/getAllCategory", categoryController.getAllCategories);
 
 // router.post("/getone", categoryController.getCategory);

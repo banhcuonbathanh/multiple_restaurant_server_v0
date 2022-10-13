@@ -6,8 +6,7 @@ const toppingController = {
 
 // ---------------------------------------------
 createToppingProductDetail : async (req, res)=>{
-    console.log('createTopping productDetailController')
-    console.log(req.body.productDetailId)
+ 
     try {
         const newTopping = await toppingModel.create({
             productDetailId: req.body.productDetailId,
@@ -46,8 +45,7 @@ createToppingProductDetail : async (req, res)=>{
 
 // ---------------------------------------------
     createTopping : async (req, res)=>{
-        console.log('createTopping productDetailController')
-        console.log(req.body.productId)
+       
     //    console.log( req.body.productdetailQuantity)
     //    console.log( req.body.productdetailBill)
         try {
@@ -102,7 +100,7 @@ createToppingProductDetail : async (req, res)=>{
 // ---------------------------------------------------------------------------
 
 getAllTopping : async (req, res)=>{
-    console.log('getAllTopping Controller')
+ 
 try {
     const allTopping = await toppingModel.find();
    
@@ -115,7 +113,7 @@ try {
 
 // ---------------------------------------------------------------------------
 deleteAllTopping: async(req, res) =>{
-    console.log('deleteAllTopping Controller')
+  
     try {
         await toppingModel.deleteMany({restaurantId: req.body.restaurantId})
         // const productModel = await productModel.findOne({restaurantId : req.body.restaurantId});
@@ -132,7 +130,7 @@ deleteAllTopping: async(req, res) =>{
 
 // ----------------------------------------------------------------------------
 searchingToppingWithProductId : async (req, res)=>{
-    console.log('searchingToppingWithProductId Controller')
+    
     // console.log('req.body.searchingkey');
     // console.log(req.body.productId);
     // const searchingKey = req.body.searchingkey;

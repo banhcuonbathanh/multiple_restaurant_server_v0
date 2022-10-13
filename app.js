@@ -11,6 +11,7 @@ const userRoute = require('./router/user');
 const toppingRoute = require('./router/topping');
 const orderRoute = require('./router/order');
 const orderTestRoute = require('./router/ordertest');
+const clickRoute = require('./router/click');
 var fs = require('fs');
 const userModel = require("./model/userModel");
 
@@ -32,7 +33,7 @@ app.use(cors());
 
 const multer = require('multer');
 const path = require('path');
-const { Console } = require("console");
+// const { Console } = require("console");
 
 var storage = multer.diskStorage({
     destination: async (req, file, cb) => {
@@ -106,6 +107,8 @@ app.use("/user", userRoute);
 app.use("/topping", toppingRoute);
 app.use("/order", orderRoute);
 app.use("/ordertest", orderTestRoute);
+app.use("/click", clickRoute);
+
 app.use( sseRoute);
 // app.listen("3000", ()=> {
 //     console.log("Server running")
@@ -156,6 +159,7 @@ const addUser = (userId, socketId) => {
 
 
 io.on('connection', async (client) => { 
+    console.log('connection on sdflkgjdsflasdfasdfsadfsadf')
 //------------------------------
    // add user to online list
     client.on('add_user', async (userId) =>{

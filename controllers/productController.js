@@ -6,7 +6,7 @@ const productController = {
 
 
     addProduct : async (req, res)=>{
-        // console.log('req.body.folderProductImage')
+        console.log('add rpoduct')
         // console.log(req.body.folderProductImage)
         try {
             const newProduct = await product.create({

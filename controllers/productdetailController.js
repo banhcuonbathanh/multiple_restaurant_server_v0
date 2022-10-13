@@ -110,7 +110,7 @@ const productDetailController = {
 // ---------------------------------------------------------------------------
 
 getAllProductDetail : async (req, res)=>{
-    console.log('getAllProductDetail productDetailController')
+
 try {
     const allProductDetail = await productDetail.find();
    
@@ -140,9 +140,9 @@ deleteAllProductDetailOfRestaurant: async(req, res) =>{
 
 // ----------------------------------------------------------------------------
 searchingProductdetailRestaurantId : async (req, res)=>{
-    console.log('searchingProductdetailRestaurantId productDetailController')
+
     // console.log('req.body.searchingkey');
-    console.log(req.body.searchingkey);
+   
     // const searchingKey = req.body.searchingkey;
     let regex = new RegExp(req.body.searchingkey,'i');
 
