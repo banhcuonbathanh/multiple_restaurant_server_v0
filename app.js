@@ -18,6 +18,35 @@ const userModel = require("./model/userModel");
 const sseRoute = require("./router/sse");
 // const SSE = require("express-sse");
 // -------------------------------------
+// -----------------------------
+// redis
+
+const redis = require('redis');
+(async () => {
+    const client = redis.createClient({
+      url: `redis://127.0.0.1:6379`,
+    });
+  
+    client.on("error", (err) => console.log("Redis Client Error", err));
+  
+    await client.connect();
+  
+    await client.set("key", "value");
+    console.log("Redis Connected!")
+    const value = await client.get("key");
+    console.log(value);
+  })();
+
+// const client = redis.createClient(6379, '127.0.0.1');
+// client.on('error', err => {
+//     console.log('Error ' + err);
+// });
+// client.on('connect', err => {
+//     console.log('connect ted redis');
+// });
+// client.set("name", "Flavio")
+// client.set('test1', 'test resul');
+// ---------------------------
 
 const server = require('http').createServer(app);
 const options = { /* ... */ };
